@@ -6,11 +6,13 @@ from src.app import app
 
 manager = Manager(app)
 
+
 @manager.command
 def test():
     """test the webapplication"""
     import nose
     nose.runmodule()
+
 
 @manager.command
 def bower_install(*options):
