@@ -4,14 +4,16 @@ import os
 from sh import pandoc, git
 import glob
 from collections import namedtuple
-from celery import task
+from celery import Celery
 
 CompilationOutput = namedtuple("compilation_result", ['output_dir', 'html', 'pdf'])
 
 class FailedCompilation():
     pass
 
-@task()
+celery = Celery()
+
+@celery.task()
 def compile_slides(git_repo, build_index=0):
     """
     """

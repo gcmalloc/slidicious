@@ -2,6 +2,7 @@ from flask import Flask
 from flask import request
 from flask import render_template
 import task
+import json
 
 app = Flask(__name__)
 app.config.update(
@@ -17,7 +18,7 @@ def index():
 
 @app.route('/hook', methods=['POST'])
 def github_hook():
-    github_data = request.json
+    github_data = json.loads(request.form)
     repo  = github_data["repository"]
     url = repo["url"]
     task.compile_slides(url)
