@@ -11,7 +11,7 @@ CompilationOutput = namedtuple("compilation_result", ['output_dir', 'html', 'pdf
 class FailedCompilation():
     pass
 
-celery = Celery()
+celery = Celery('task', broker='redis://127.0.0.1')
 
 @celery.task()
 def compile_slides(git_repo, build_index=0):
