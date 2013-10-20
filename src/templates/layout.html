@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>テンプレート</title>
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.css') }}">
+        <script type=text/javascript src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script type=text/javascript src="{{url_for('static', filename='js/bootstrap.js') }}"></script>
+
+    </head>
+
+{% block body %}{% endblock %}

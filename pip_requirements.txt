@@ -1,0 +1,5 @@
+flask
+flask-script
+sh
+celery
+nose

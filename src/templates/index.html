@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Slidicious</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><a href="/"></a></li>
+              <li><a href="logout"></a></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+<div class="container">
+
+    <div class="hero-unit">
+        <h2>「 Latest Slide 」</h2>
+    {% for slide in slides %}
+        slide.name
+    {% endfor %}
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}
+<!--</body>-->
+<!--</html>-->
