@@ -32,13 +32,16 @@ def compile_slides(git_repo, static_dir):
 
     try:
         pd.compile_html(in_file, html_out)
-    except:
+    except Exception as e:
         logging.error("compilation fail for html")
+        logging.error(str(e))
 
     try:
         pd.compile_pdf(in_file, pdf_out)
+    except Exception as e:
     except:
         logging.error("compilation fail for pdf")
+        logging.error(str(e))
 
 def find_markdown(cwd):
     md_glob = os.path.join(cwd, '*.md')
