@@ -21,7 +21,7 @@ def index():
 
 @app.route('/hook', methods=['POST'])
 def github_hook():
-    github_data = json.loads(request.form)
+    github_data = json.loads(request.form['payload'])
     repo  = github_data["repository"]
     url = repo["url"]
     uniq_name = "/".join(url.split()[-2:])
