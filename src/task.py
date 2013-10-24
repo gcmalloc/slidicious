@@ -5,16 +5,17 @@ from sh import pandoc, git
 import glob
 from collections import namedtuple
 from celery import Celery
+from app import app
 
 CompilationOutput = namedtuple("compilation_result", ['output_dir', 'html', 'pdf'])
 
 class FailedCompilation():
     pass
 
-celery = Celery('task', broker='redis://127.0.0.1')
+celery = Celery('task', broker=os.environ('CLOUDAMQP_URL', 'redis://127.0.0.1'))
 
 @celery.task()
-def compile_slides(git_repo, build_index=0):
+def compile_slides(git_repo, build_index):
     """
     """
     work_dir = tempfile.mkdtemp()
@@ -25,6 +26,10 @@ def compile_slides(git_repo, build_index=0):
 
     html_out = str(build_index) + ".html"
     pdf_out = str(build_index) + ".pdf"
+
+    html_out = os.path.join(app.static_folder, html_out)
+    pdf_out = os.path.join(app.static_folder, pdf_out)
+
     try:
         pd.compile_html(in_file, html_out)
     except:
@@ -34,8 +39,6 @@ def compile_slides(git_repo, build_index=0):
         pd.compile_pdf(in_file, pdf_out)
     except:
         logging.error("compilation fail for pdf")
-
-    return CompilationOutput(work_dir, html_out, pdf_out, )
 
 def find_markdown(cwd):
     md_glob = os.path.join(cwd, '*.md')

@@ -1,0 +1,7 @@
+flask
+flask-script
+sh
+celery
+nose
+gunicorn==0.17.2
+
