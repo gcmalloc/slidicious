@@ -7,12 +7,12 @@ from collections import namedtuple
 from celery import Celery
 from app import app
 
-CompilationOutput = namedtuple("compilation_result", ['output_dir', 'html', 'pdf'])
+CompilationOutput = namedtuple("task", ['output_dir', 'html', 'pdf'])
 
 class FailedCompilation():
     pass
 
-celery = Celery('task', broker=os.environ('CLOUDAMQP_URL', 'redis://127.0.0.1'))
+celery = Celery('task', broker=os.environ.get('CLOUDAMQP_URL', 'redis://127.0.0.1'))
 
 @celery.task()
 def compile_slides(git_repo, build_index):
