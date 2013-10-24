@@ -15,7 +15,7 @@ class FailedCompilation():
 celery = Celery('task', broker=os.environ.get('CLOUDAMQP_URL', 'redis://127.0.0.1'))
 
 @celery.task()
-def compile_slides(git_repo, build_index):
+def compile_slides(git_repo, static_dir):
     """
     """
     work_dir = tempfile.mkdtemp()
@@ -24,8 +24,8 @@ def compile_slides(git_repo, build_index):
     git.clone(git_repo, '.', _cwd=work_dir)
     in_file = find_markdown(work_dir)
 
-    html_out = str(build_index) + ".html"
-    pdf_out = str(build_index) + ".pdf"
+    html_out = str(static_dir) + ".html"
+    pdf_out = str(static_dir) + ".pdf"
 
     html_out = os.path.join(app.static_folder, html_out)
     pdf_out = os.path.join(app.static_folder, pdf_out)

@@ -3,6 +3,7 @@ from flask import request
 from flask import render_template
 import task
 import json
+import os
 
 app = Flask(__name__)
 app.config.update(
@@ -21,7 +22,8 @@ def github_hook():
     github_data = json.loads(request.form)
     repo  = github_data["repository"]
     url = repo["url"]
-    task.compile_slides(url)
+    uniq_name = "/".join(url.split()[-2:])
+    task.compile_slides(url, os.path.join(app.static_folder, uniq_name))
     return {}
 
 
