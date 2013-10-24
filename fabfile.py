@@ -3,8 +3,6 @@ from fabric.contrib.files import exists
 from fabric.context_managers import cd
 
 DEPENDENCIES = ['git', 'python', 'python-pip', 'libapache2-mod-wsgi', 'apache2']
-import logging
-logging.basicConfig( level=logging.DEBUG)
 
 
 def deploy():
