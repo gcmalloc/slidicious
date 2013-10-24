@@ -3,9 +3,9 @@ from fabric.contrib.files import exists
 from fabric.context_managers import cd
 
 DEPENDENCIES = ['git', 'python', 'python-pip', 'libapache2-mod-wsgi', 'apache2']
+import logging
+logging.basicConfig( level=logging.DEBUG)
 
-
-env.use_ssh_config = True
 
 def deploy():
     """deploy the application, if it already exist, it will just update it"""
@@ -28,3 +28,6 @@ def deploy():
 def redeploy():
     """Just remove the git repository"""
     run("rm -Rvf slidicious")
+
+def uname():
+    run("uname -a")
