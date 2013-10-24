@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import request
 from flask import render_template
+from flask import jsonify
 import task
 import json
 import os
@@ -25,7 +26,7 @@ def github_hook():
     url = repo["url"]
     uniq_name = "/".join(url.split()[-2:])
     task.compile_slides(url, os.path.join(app.static_folder, uniq_name))
-    return {}
+    return jsonify(response="OK")
 
 
 if __name__ == '__main__':
