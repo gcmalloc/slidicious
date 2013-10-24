@@ -11,9 +11,9 @@ def deploy():
     """deploy the application, if it already exist, it will just update it"""
     sudo("apt-get install {}".format(" ".join(DEPENDENCIES)))
     if exists("slidicious"):
-        put("config/slidicious", "/etc/apache2/site-available/", use_sudo=True)
-        sudo("chown root:root /etc/apache2/site-available/slidicious")
-        sudo("ln -s /etc/apache2/site-available/slidicious /etc/apache2/site-enabled/001-slidicious")
+        put("config/slidicious", "/etc/apache2/sites-available/", use_sudo=True)
+        sudo("chown root:root /etc/apache2/sites-available/slidicious")
+        sudo("ln -s /etc/apache2/sites-available/slidicious /etc/apache2/sites-enabled/001-slidicious")
         put("config/supervisord.conf", "slidicious/src")
         run("git clone git@github.com:gcmalloc/slidicious.git")
         sudo("service apache restart")
