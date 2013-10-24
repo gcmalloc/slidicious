@@ -15,7 +15,7 @@ class FailedCompilation():
 celery = Celery('task', broker=os.environ.get('CLOUDAMQP_URL', 'redis://127.0.0.1'))
 
 @celery.task()
-def compile_slides(git_repo, static_dir):
+def compile_slides(git_repo, base_path):
     """
     """
     work_dir = tempfile.mkdtemp()
@@ -23,9 +23,12 @@ def compile_slides(git_repo, static_dir):
     pd = Pandoc(work_dir)
     git.clone(git_repo, '.', _cwd=work_dir)
     in_file = find_markdown(work_dir)
+    #ensure that the directory exists
+    base_dir = os.path.dirname(base_path)
+    os.makedirs(base_dir)
 
-    html_out = str(static_dir) + ".html"
-    pdf_out = str(static_dir) + ".pdf"
+    html_out = str(base_path) + ".html"
+    pdf_out = str(base_path) + ".pdf"
 
     html_out = os.path.join(app.static_folder, html_out)
     pdf_out = os.path.join(app.static_folder, pdf_out)
@@ -39,7 +42,6 @@ def compile_slides(git_repo, static_dir):
     try:
         pd.compile_pdf(in_file, pdf_out)
     except Exception as e:
-    except:
         logging.error("compilation fail for pdf")
         logging.error(str(e))
 
