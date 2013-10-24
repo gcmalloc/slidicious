@@ -1,0 +1,21 @@
+<VirtualHost *:80>
+    ServerName slidicious.io
+
+    ErrorLog "/home/ubuntu/logs/error.log"
+    LogFormat "%h %l %u %t \"%r\" %>s %b" common
+    CustomLog "/home/ubuntu/logs/access.log" common
+
+    Alias /static/ /home/ubuntu/slidicious/src/static
+
+    <Directory /home/ubuntu/slidicious/src/static>
+        Order Allow,Deny
+        Allow from All
+    </Directory>
+
+    WSGIDaemonProcess djangoP processes=10 threads=15 display-name=%{GROUP} python-path=/home/ubuntu/slidicious/src
+    WSGIProcessGroup djangoP
+    WSGIScriptAlias / /home/ubuntu/slidicious/src/app.py
+    WSGIApplicationGroup %{GLOBAL}
+    WSGIPassAuthorization On
+
+</VirtualHost>
