@@ -2,7 +2,7 @@ from fabric.operations import put, run, sudo, env
 from fabric.contrib.files import exists
 from fabric.context_managers import cd
 
-DEPENDENCIES = ['git', 'python', 'python-pip', 'libapache2-mod-wsgi', 'apache2']
+DEPENDENCIES = ['git', 'python', 'python-pip', 'libapache2-mod-wsgi', 'apache2', 'python-celery', 'python-redis']
 
 
 def deploy():
