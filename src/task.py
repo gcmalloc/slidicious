@@ -25,7 +25,10 @@ def compile_slides(git_repo, base_path):
     in_file = find_markdown(work_dir)
     #ensure that the directory exists
     base_dir = os.path.dirname(base_path)
-    os.makedirs(base_dir)
+    try:
+        os.makedirs(base_dir)
+    except OSError:
+        logging.warn("directory {} already exists".format(base_dir))
 
     html_out = str(base_path) + ".html"
     pdf_out = str(base_path) + ".pdf"
