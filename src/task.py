@@ -48,7 +48,9 @@ def compile_slides(git_repo, base_path):
 def find_markdown(cwd):
     md_glob = os.path.join(cwd, '*.md')
     files = glob.glob(md_glob)
-    return files[0]
+    for file in files:
+        if not file.contains("REAMDE"):
+            return file
 
 
 class Pandoc:
