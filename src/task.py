@@ -30,8 +30,8 @@ def compile_slides(git_repo, base_path):
     html_out = str(base_path) + ".html"
     pdf_out = str(base_path) + ".pdf"
 
-    html_out = os.path.join(app.static_folder, html_out)
-    pdf_out = os.path.join(app.static_folder, pdf_out)
+    html_out = os.path.join(base_path, html_out)
+    pdf_out = os.path.join(base_path, pdf_out)
 
     try:
         pd.compile_html(in_file, html_out)
