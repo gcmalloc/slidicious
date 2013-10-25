@@ -18,11 +18,29 @@
 
 <div class="container">
 
+
+    <div class="hero-unit">
+    	<p>
+		Slidicious is an automated slide building service. It build your slide from markdown format to html and pdf. It then upload the result to this site.
+	</p>
+    </div>
+    {% if slides %}
     <div class="hero-unit">
         <h2>「 Latest Slide 」</h2>
     {% for slide in slides %}
         slide.name
     {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="hero-unit">
+        <h2> 」How to setup slidicious「 </h2>
+	<p>
+	To make slidicious work, simply point the github hook url to {{url_for('github_hook')}}. This will trigger the build everytime you push the repository to gitub. 
+	</p>
+	<p>
+	Your compiled slides can be found in /static/{username}/repositoryname.html for the html slide and /static/{username}/repositoryname.pdf for the pdf slides.
+	</p>
 
     </div>
 
