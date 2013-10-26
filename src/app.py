@@ -29,7 +29,8 @@ def github_hook():
     repo  = github_data["repository"]
     url = repo["url"]
     uniq_name = "/".join(url.split('/')[-2:])
-    task.compile_slides.delay(url, os.path.join(os.path.join(app.static_folder, app.config['COMPILED_DIR']), uniq_name))
+    app_args = (url, os.path.join(os.path.join(app.static_folder, app.config['COMPILED_DIR']), uniq_name))
+    task.compile_slides.delay(*app_args)
     return jsonify(response="OK")
 
 
