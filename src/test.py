@@ -13,14 +13,17 @@ class AppTest(unittest.TestCase):
     """
     def setUp(self):
         self.app = app.app.test_client()
+        with open("src/assets/github_hook.json") as f:
+            self.github_hook_data = dict()
+            self.github_hook_data['payload'] = f.read()
 
     def test_(self):
-        resp = self.app.post('/hook', data={'repository':'google.ch'})
+        resp = self.app.post('/hook', data=dict(self.github_hook_data))
 	self.assertEqual(resp.status_code, 200)
 
     def test_root(self):
-        resp = self.app.get('/', payload={'payload':{}})
-	self.assertEqual(resp.status_code, 400)
+        resp = self.app.get('/')
+	self.assertEqual(resp.status_code, 200)
 
 
 class TestSlideBuild(unittest.TestCase):
@@ -30,11 +33,11 @@ class TestSlideBuild(unittest.TestCase):
         self.temp_template = os.path.join(self.temp_dir, "555")
 
     def test_pdf(self):
-        ret = task.compile_slides("https://github.com/gcmalloc/fabric_presentation.git", self.temp_dir)
-        self.tmp_dir = ret.output_dir
-        self.assertIsInstance(ret, task.CompilationOutput)
-        self.assertEqual(ret.html, '555.html')
-        self.assertEqual(ret.pdf, '555.pdf')
+        task.compile_slides("https://github.com/gcmalloc/fabric_presentation.git", self.temp_template)
+        generated_files = os.listdir(self.temp_dir)
+        self.assertIn("555.html", generated_files)
+        self.assertIn("555.pdf", generated_files)
+        self.assertEqual(len(generated_files), 2)
 
     def tearDown(self):
-        shutil.rmtree(self.tmp_dir)
+        shutil.rmtree(self.temp_dir)

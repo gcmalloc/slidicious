@@ -18,6 +18,7 @@ def compile_slides(git_repo, base_path):
     """
     """
     work_dir = tempfile.mkdtemp()
+    logging.debug("will work in {}".format(work_dir))
 
     pd = Pandoc(work_dir)
     git.clone(git_repo, '.', _cwd=work_dir)
@@ -32,20 +33,24 @@ def compile_slides(git_repo, base_path):
     html_out = str(base_path) + ".html"
     pdf_out = str(base_path) + ".pdf"
 
-    html_out = os.path.join(base_path, html_out)
-    pdf_out = os.path.join(base_path, pdf_out)
-
     try:
+        logging.debug("compiling the html output")
+        logging.debug(html_out)
         pd.compile_html(in_file, html_out)
     except Exception as e:
         logging.error("compilation fail for html")
         logging.error(str(e))
 
     try:
+        logging.debug("compiling the pdf output")
+        logging.debug(pdf_out)
         pd.compile_pdf(in_file, pdf_out)
     except Exception as e:
         logging.error("compilation fail for pdf")
         logging.error(str(e))
+
+    logging.debug("Cleaning working directory")
+
 
 def find_markdown(cwd):
     md_glob = os.path.join(cwd, '*.md')

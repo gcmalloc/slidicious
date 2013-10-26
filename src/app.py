@@ -5,6 +5,7 @@ from flask import jsonify
 import task
 import json
 import os
+import logging
 
 app = Flask(__name__)
 application = app
@@ -17,12 +18,14 @@ app.config.update(
 
 @app.route('/', methods=['GET'])
 def index():
-    return  render_template('index.html', last_slides=[])
-
+    return  render_template('carousel.html', last_slides=[])
 
 @app.route('/hook', methods=['POST'])
 def github_hook():
+    logging.debug(request.form.keys())
+    logging.debug(request.form['payload'])
     github_data = json.loads(request.form['payload'])
+    logging.debug(github_data)
     repo  = github_data["repository"]
     url = repo["url"]
     uniq_name = "/".join(url.split('/')[-2:])
