@@ -5,7 +5,6 @@ from sh import pandoc, git
 import glob
 from collections import namedtuple
 from celery import Celery
-from app import app
 
 CompilationOutput = namedtuple("task", ['output_dir', 'html', 'pdf'])
 
