@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Integration testing"""
 import os
 import shutil
 import task
@@ -7,23 +8,24 @@ import unittest
 import tempfile
 
 class AppTest(unittest.TestCase):
-
     """Test case template""
     def __init__(self, arg):
     """
+
     def setUp(self):
+	app.app.config['TESTING'] = True
         self.app = app.app.test_client()
         with open("src/assets/github_hook.json") as f:
             self.github_hook_data = dict()
             self.github_hook_data['payload'] = f.read()
 
-    def test_(self):
+    def test_hook(self):
         resp = self.app.post('/hook', data=dict(self.github_hook_data))
-	self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
 
     def test_root(self):
         resp = self.app.get('/')
-	self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
 
 
 class TestSlideBuild(unittest.TestCase):
