@@ -51,7 +51,7 @@ def find_markdown(cwd):
     md_glob = os.path.join(cwd, '*.md')
     files = glob.glob(md_glob)
     for file in files:
-        if not file.contains("REAMDE"):
+        if not "README" in file:
             return file
 
 
