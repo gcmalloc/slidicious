@@ -3,6 +3,7 @@ import logging
 import os
 from sh import pandoc, git
 import glob
+import shutil
 from collections import namedtuple
 from celery import Celery
 
@@ -50,6 +51,7 @@ def compile_slides(git_repo, base_path):
         logging.error(str(e))
 
     logging.debug("Cleaning working directory")
+    shutil.rmtree(work_dir)
 
 
 def find_markdown(cwd):
