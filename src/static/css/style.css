@@ -5,19 +5,20 @@
 	margin-top: 30px;
 }
 
-div.link:hover {
-}
 
 div.link {
-	border-color: light-grey;
-	border-width: 10px;
-	border-style: solid;
-	border-radius: 55px;
+	text-align: center;
 	font-size: 40px;
 	margin: 10px;
 	line-height: 90px;
 	font-family: Belleza;
 }
+
+footer{
+	width: 940px;
+	margin: auto;
+}
+
 .brand {
 	font-family: Belleza;
 }
