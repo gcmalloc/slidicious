@@ -14,7 +14,7 @@ application = app
 
 @app.route('/', methods=['GET'])
 def index():
-    return  render_template('carousel.html', last_slides=[])
+    return  render_template('index.html', last_slides=[])
 
 @app.route('/hook', methods=['POST'])
 def github_hook():
