@@ -12,7 +12,7 @@ app = Flask(__name__)
 app.config.from_object('src.config')
 application = app
 
-Slide = collections.namedtuple('Slide', ['author', 'file_name'])
+Slide = collections.namedtuple('Slide', ['author', 'name', 'file'])
 
 def list_slides():
     slides_dir = os.path.join(app.static_folder, app.config['COMPILED_DIR'])
@@ -26,7 +26,8 @@ def list_slides():
     for user in slides_authors:
         user_dir = os.path.join(slides_dir, user)
         for slide in os.listdir(user_dir):
-            slides.append(Slide(user, slide))
+            fp = os.path.join(app.config['COMPILED_DIR'], user, slide)
+            slides.append(Slide(user, slide, fp))
     return slides
 
 

@@ -4,13 +4,15 @@
     <div class="container slides-list">
       <div class="row">
 	 {% for slide in slides %}
+	 <a href="{{ url_for('static', filename=slide.file) }}">
 	    <div class="span4 slide">
 		   <h2>{{slide.author}}</h2>
 		   <i class="icon-file"></i>
 		   <p>
-		 {{slide.file_name}}
+		 {{slide.name}}
 		   </p>
 	    </div>
+   	 </a>
 	 {% endfor %}
       </div>
     </div>
