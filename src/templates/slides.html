@@ -2,12 +2,17 @@
 {%block body%}
 
     <div class="container slides-list">
+      <div class="row">
 	 {% for slide in slides %}
-	    <div class="container">
-	         {{slide.author}}
+	    <div class="span4 slide">
+		   <h2>{{slide.author}}</h2>
+		   <i class="icon-file"></i>
+		   <p>
 		 {{slide.file_name}}
+		   </p>
 	    </div>
 	 {% endfor %}
+      </div>
     </div>
 
     <!-- Marketing messaging and featurettes
