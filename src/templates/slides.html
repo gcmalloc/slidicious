@@ -1,10 +1,13 @@
 {%extends "layout.html"%}
 {%block body%}
 
-    <div class="hero-unit">
-	    <h1>Automatic slide builder</h1>
-	    <div class="link">http://62.220.148.19/hook</div>
-	    <p>Add this url to your github hook</p>
+    <div class="container slides-list">
+	 {% for slide in slides %}
+	    <div class="container">
+	         {{slide.author}}
+		 {{slide.file_name}}
+	    </div>
+	 {% endfor %}
     </div>
 
     <!-- Marketing messaging and featurettes

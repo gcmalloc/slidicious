@@ -4,6 +4,7 @@ from flask.ext.script import Manager
 
 from src.app import app
 
+app.debug = True
 manager = Manager(app)
 
 
