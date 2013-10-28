@@ -4,17 +4,11 @@
 	text-align: center;
 	margin-top: 30px;
 }
+
 .slide {
-	background: lightgray;
-	border-radius: 50px;
-	border-style: solid;
-	border-color: lightgray;
-	border-width: 2px;
-	margin-top: 20px;
-}
-.slide:hover {
-	border-style: solid;
-	border-color: gray;
+	background-color: lightgray;
+	border-radius: 30px;
+	margin-top: 20px
 }
 
 .slides-list {
