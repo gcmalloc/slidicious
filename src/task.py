@@ -65,11 +65,13 @@ def find_markdown(cwd):
 class Pandoc:
 
     def __init__(self, cwd):
+        src_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        self.template = os.path.join(src_dir, "assets/template.html")
         self.cwd = cwd
 
     def compile_html(self, in_file, out_file):
-        pandoc('--section-divs', '-r', 'markdown', in_file, '-t', 'html5', '-o', out_file, _cwd=self.cwd)
-        #res = pandoc(in_file, out_file, _cwd=self.cwd)
+        template = self.file_dir
+        pandoc('--section-divs', '-t', 'html5', '-s', '--template', self.template, '-o', out_file, in_file, _cwd=self.cwd)
 
     def compile_pdf(self, in_file, out_file):
         # pandoc -r markdown slides.md -t beamer -o out.pdf --slide-level=3 --toc --highlight-style=tango
