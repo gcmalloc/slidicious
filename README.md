@@ -1,4 +1,15 @@
 Slidicious
-=======================
+==========
 
-Little project to build automatically my slides, from markdown to html and pdf. For the moment, just a prototype.
+Service to automatically compile markdown documents to HTML+Javascript and PDF slides using Pandoc.
+
+The current version is a prototype.
+
+
+Installation
+------------
+
+Make sure to have all required python packages:
+```bash
+pip install -r requirements.txt
+```

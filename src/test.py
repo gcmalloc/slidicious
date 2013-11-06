@@ -13,7 +13,7 @@ class AppTest(unittest.TestCase):
     """
 
     def setUp(self):
-	app.app.config['TESTING'] = True
+        app.app.config['TESTING'] = True
         self.app = app.app.test_client()
         with open("src/assets/github_hook.json") as f:
             self.github_hook_data = dict()
