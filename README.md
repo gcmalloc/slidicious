@@ -6,8 +6,10 @@ Service to automatically compile markdown documents to HTML+Javascript and PDF s
 The current version is a prototype.
 
 
-Installation
-------------
+Installation & Requirements
+---------------------------
+
+Requires python 2.7
 
 Make sure to have all required python packages:
 ```bash
