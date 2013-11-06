@@ -13,5 +13,5 @@ Requires python 2.7
 
 Make sure to have all required python packages:
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.txt --user
 ```
